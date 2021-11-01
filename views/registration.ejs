@@ -42,7 +42,7 @@
                         <div class="row">
                             <div class="col-6">
                                 <label for=""></label>
-                                <input type="submit" class="form-control btn btn-primary rounded shadow-ms"
+                                <input type="submit" id="create" class="form-control btn btn-primary rounded shadow-ms"
                                     value="create Account">
                             </div>
                         </div>
@@ -60,22 +60,32 @@
         $(document).ready(() => {
             const provider = new ethers.providers.Web3Provider(window.ethereum)
             const signer = provider.getSigner()
-
-            const abi =[]
+            const address = "0xf8e81D47203A594245E36C48e151709F0C19fBe8";
+            const abi =[
+                "function countCompanies()public view returns(uint  compamies)",
+                "function createCompany(string memory cname,string memory location,string memory email,string memory businessType,string memory tin) public",
+                "function getCompany(address _address) public view returns(string memory name,address _companyid,string memory location)",
+                "function newTender(string memory title,string memory description,uint256 openingdate,uint clossingdate,string memory documents) public",
+                "function getTender(uint id) public  view returns(uint _tid,address _manager,string memory title,string memory description)"
+            ]
 
             //create account function invoked
 
-            function createSupplier() {
 
+            $("#create").click(async()=>{
+ 
                 var businessName = $("#businessname").val()
-                var tin = $("#Tin").val()
+                var tin = $("#tin").val()
                 var location = $("#location").val()
-                var address = $("#address").val()
-                var acc_add = signer.getAccount()
+                var email = $("#address").val()
+                var businesstype="company"
+                const TenderW= new ethers.Contract(address,abi,signer);
+                const TenderR= new ethers.Contract(address,abi,provider);
+          
+                const data = await TenderW.createCompany("jOB","jOB","jOB","jOB","hELLOW");
+            
+            })
 
-
-
-            }
 
         })
     </script>
