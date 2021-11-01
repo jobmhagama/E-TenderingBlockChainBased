@@ -1,5 +1,5 @@
-const Migrations = artifacts.require("Migrations");
+const Etendering = artifacts.require("Etendering");
 
 module.exports = function (deployer) {
-  deployer.deploy(Migrations);
+  deployer.deploy(Etendering);
 };

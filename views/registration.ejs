@@ -60,7 +60,7 @@
         $(document).ready(() => {
             const provider = new ethers.providers.Web3Provider(window.ethereum)
             const signer = provider.getSigner()
-            const address = "0xf8e81D47203A594245E36C48e151709F0C19fBe8";
+            const address = "0x04767411d1965f4C20f17C5D9968a80c0523d2c9";
             const abi =[
                 "function countCompanies()public view returns(uint  compamies)",
                 "function createCompany(string memory cname,string memory location,string memory email,string memory businessType,string memory tin) public",
@@ -81,8 +81,9 @@
                 var businesstype="company"
                 const TenderW= new ethers.Contract(address,abi,signer);
                 const TenderR= new ethers.Contract(address,abi,provider);
-          
-                const data = await TenderW.createCompany("jOB","jOB","jOB","jOB","hELLOW");
+                const data = TenderR.countCompanies()
+            
+                
             
             })
 
