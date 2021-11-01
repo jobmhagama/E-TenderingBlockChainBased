@@ -1,0 +1,83 @@
+<%- include("header")%>
+
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    Create Supplier Account
+                </div>
+                <div class="card-body">
+                    <form onsubmit="return false">
+                        <div class="row">
+                            <div class="col-8">
+                                <label for=""></label>
+                                <input type="text" class="form-control rounded shadow-ms" id="businessname"
+                                    placeholder="Enter Business Name">
+                            </div>
+                            <div class="col-6">
+                                <label for=""></label>
+                                <input type="text" class="form-control rounded shadow-ms" id="tin"
+                                    placeholder="Enter TIN number">
+                            </div>
+                            <div class="col-6">
+                                <label for=""></label>
+                                <input type="text" class="form-control rounded shadow-ms" type="type"
+                                    placeholder="Business Type">
+                            </div>
+                            <div class="col-6">
+                                <label for=""></label>
+                                <input type="text" class="form-control rounded shadow-ms" id="location"
+                                    placeholder="Enter location">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for=""></label>
+                                <input type="text" class="form-control rounded shadow-ms" id="address"
+                                    placeholder="Business Address">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <label for=""></label>
+                                <input type="submit" class="form-control btn btn-primary rounded shadow-ms"
+                                    value="create Account">
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    <script src="JQ/jq.js"></script>
+    <script>
+        $(document).ready(() => {
+            const provider = new ethers.providers.Web3Provider(window.ethereum)
+            const signer = provider.getSigner()
+
+            const abi =[]
+
+            //create account function invoked
+
+            function createSupplier() {
+
+                var businessName = $("#businessname").val()
+                var tin = $("#Tin").val()
+                var location = $("#location").val()
+                var address = $("#address").val()
+                var acc_add = signer.getAccount()
+
+
+
+            }
+
+        })
+    </script>
+    
+    <%- include ("footer") %>
