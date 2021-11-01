@@ -17,16 +17,13 @@ contract Etendering {
          
          
     }
-    
+
     
     uint public companies ;
-    
     uint [] public cids ;
-    
-    
-    
     mapping (address=>Company) public Companies ;
-    
+
+   
     function countCompanies()public view returns(uint  compamies){
         
         return companies;
@@ -68,19 +65,56 @@ contract Etendering {
     
     }
     
-    //create Etendering
+
     
+    //This is the tender section of the contract
+
+     struct Tender {
+      uint id;
+      uint openingDate;
+      uint clossingDate;
+      address company_Address;
+      string title ;
+      string description;
+      string status;
+      string link ;
     
-    function newTender(string memory title,) public{
-        
-        
-        
-        
-        
     }
     
-    
-    
+    uint public tenders ;
+    //All tender id will be stored here for proper looping
+    uint [] public tids ;
+    //tender ids
+    uint tid;
+    mapping ( uint => Tender) public Tenders ;
 
+     
+        
+    function newTender(string memory title,string memory description,uint256 openingdate,uint clossingdate,string memory documents) public{
+        
+      //add new object in the mapping
+      address manager = msg.sender ;
+       tid=tid+1;
+       Tenders[tid].id=tid;
+       Tenders[tid].company_Address=manager;
+       Tenders[tid].title=title;
+       Tenders[tid].description=description;
+       Tenders[tid].status="pending";
+       Tenders[tid].link= documents;
+       Tenders[tid].openingDate=openingdate;
+       Tenders[tid].clossingDate= clossingdate;
+    }
+
+    function getTender(uint id) public  view returns(uint _tid,address _manager,string memory title,string memory description){
+
+        return (Tenders[id].id,Tenders[id].company_Address,Tenders[id].title,Tenders[id].description);
+
+    }
+
+
+    //Bidding section of the contract
+
+
+    
  
 }
