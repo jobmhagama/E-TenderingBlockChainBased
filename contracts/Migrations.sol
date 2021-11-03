@@ -24,7 +24,7 @@ contract Etendering {
     mapping (address=>Company) public Companies ;
 
    
-    function countCompanies()public view returns(uint  compamies){
+    function countCompanies()public view returns(uint _companies){
         
         return companies;
         
@@ -47,16 +47,7 @@ contract Etendering {
     
     }
     
-    // function Company(address _add) public view returns (string memory _name,address memory _companyid,string  memory _location,string memory _businessType){
-        
-        
-        
-    //     return (Companies[_add].name,Companies[_add].add,Companies[_add].location,Companies[_add].email,Companies[_add].businessType);
-        
-        
-        
-    // }
-    
+  
     
     function getCompany(address _address) public view returns(string memory name,address _companyid,string memory location){
         
