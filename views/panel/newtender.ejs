@@ -1,0 +1,93 @@
+ <%- include ("sidebar")%>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">New Tender</h5>
+            </div>
+            <div class="card-body">
+             
+
+              <!-- Multi Columns Form -->
+              <form class="row g-3" id="tender" onsubmit="return false">
+                <div class="col-md-12">
+                  <label for="inputName5" class="form-label" >Tender Title</label>
+                  <input type="text" class="form-control" id="title">
+                </div>
+                <div class="col-md-6">
+                  <label for="inputEmail5" class="form-label">Bid OPening Date</label>
+                  <input type="date" class="form-control" id="bidOpening">
+                </div>
+                <div class="col-md-6">
+                  <label for="inputPassword5" class="form-label">Bid Clossing date</label>
+                  <input type="date" class="form-control" id="bidClosing">
+                </div>
+                <div class="col-12">
+    
+                  <textarea name="" id="description"  class="form-control"  cols="30" rows="10"></textarea>
+                 
+                </div>
+                <div class="col-12">
+                    <label for="">procurement method</label>
+                  <select name="" id="method" class="form-control" >
+                      <option value="">.....</option>
+                      <option value="">open</option>
+                      <option value="">Clossed</option>
+                      <option value="">Request for proposal</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="inputCity" id="attachement" class="form-label">Docuuments</label>
+                  <input type="file" class="form-control" id="inputCity">
+                </div>
+               
+              
+                <div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+              </form><!-- End Multi Columns Form -->
+
+            </div>
+          </div>
+    </div>
+    <div class="col-md-2"></div>
+    
+    <div class="col"></div>
+</div>
+<script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+<script src="JQ/jq.js"></script>
+<script>
+    let address = "<%= address %>";
+    let abi = <%- abi %>;
+   
+    $(document).ready(()=>{
+        console.log(address)
+            const provider = new ethers.providers.Web3Provider(window.ethereum)
+            const signer = provider.getSigner()
+           
+         
+        $("#tender").on("submit",async()=>{
+           
+            //take the input from the for,
+            let title= $("#title").val()
+         
+            let openingDate = parseFloat($("#bidOpening").val())
+            let clossingDate= parseFloat($("#bidClosing").val())
+            let description = $("#description").val()
+            let attachement = $("#attachments").val()
+            let method = $("#method").val()
+          
+            const TenderW = new ethers.Contract(address,abi,signer);
+            const data =await TenderW.newTender(title,description,openingDate,clossingDate,"hellow"); 
+            const receipt = await data.wait()
+          
+
+
+        })
+
+    })
+</script>
+
+ <%- include ("footer") %>

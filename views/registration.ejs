@@ -57,21 +57,17 @@
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
     <script src="JQ/jq.js"></script>
     <script>
+        let address ="<%= address%>"
+        let abi =  <%- abi %>
+
+        window.alert(address)
+       
         $(document).ready(() => {
+            
+          
             const provider = new ethers.providers.Web3Provider(window.ethereum)
             const signer = provider.getSigner()
-            const address = "0x5c3B9ca19EA8d026EBF9F3326452D2FFfCC919EA";
-            const abi =[
-                "function countCompanies()public view returns(uint  compamies)",
-                "function createCompany(string memory cname,string memory location,string memory email,string memory businessType,string memory tin) public",
-                "function getCompany(address _address) public view returns(string memory name,address _companyid,string memory location)",
-                "function newTender(string memory title,string memory description,uint256 openingdate,uint clossingdate,string memory documents) public",
-                "function getTender(uint id) public  view returns(uint _tid,address _manager,string memory title,string memory description)"
-            ]
-
-            //create account function invoked
-
-
+          
             $("#create").click(async()=>{
  
                 var businessName = $("#businessname").val()
@@ -82,16 +78,7 @@
                 const TenderW= new ethers.Contract(address,abi,signer);
                 const TenderR= new ethers.Contract(address,abi,provider);
 
-                console.log(businessName)
-
-                console.log(location)
-
-                console.log(email)
-
-                console.log(businesstype)
-
-                console.log(tin)
-                const cc =TenderW.createCompany(businessName,location,email,businesstype,tin)
+                const cc = TenderW.createCompany(businessName,location,email,businesstype,tin)
 
 
                
