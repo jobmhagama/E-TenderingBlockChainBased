@@ -7,7 +7,7 @@ app.set("view engine","ejs")
 app.use(expres.urlencoded({extended:true}))
 app.use(expres.json())
 
-const address = "0xc1e1672cA2D32907dE377c7d6b092Ac56eF819eE"
+const address = "0xDf742649D20D978a00C9D54aE3BDDb39335Fe89C"
 const abi = fs.readFileSync(__dirname+"/abi.json")
 
 app.get("/",(req,res)=>{
@@ -30,7 +30,14 @@ app.get("/newtender",(req,res)=>{
 
     res.render("panel/newtender",{address:address,abi:abi})
 })
+app.get("/tenderevaluation",(req,res)=>{
 
+    res.render("panel/tenderEvaluation",{address,abi})
+})
+app.get("/awardcontract",(req,res)=>{
+
+    res.render("panel/tenderEvaluation",{address,abi})
+})
 app.get("/registration",(req,res)=>{
 
     res.render("registration",{address,abi})
