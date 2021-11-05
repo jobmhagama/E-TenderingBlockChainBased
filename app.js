@@ -30,14 +30,22 @@ app.get("/newtender",(req,res)=>{
 
     res.render("panel/newtender",{address:address,abi:abi})
 })
+
 app.get("/tenderevaluation",(req,res)=>{
 
     res.render("panel/tenderEvaluation",{address,abi})
 })
+
 app.get("/awardcontract",(req,res)=>{
 
     res.render("panel/tenderEvaluation",{address,abi})
 })
+
+app.get("/activetenders",(req,res)=>{
+
+    res.render("panel/activeTenders",{address,abi})
+})
+
 app.get("/registration",(req,res)=>{
 
     res.render("registration",{address,abi})
